@@ -1,9 +1,52 @@
+before_all do
+  ENV["RANDOM_WORDS_COUNT"] ||= "5"
+  ENV["CSV_FILE_NAME"] ||= "commonly-spoken-Dutch-words.csv"
+  ENV["SLACK_CHANNEL_NAME"] ||= "testing-manish"
+  ENV["FL_SLACK_USERNAME"] ||= "Flashcard Bot"
+  ENV["FL_SLACK_ICON_URL"] ||= "https://robohash.org/Flashcard"
+end
+
 desc "Morning dutch_words slack message"
 lane :morning_dutch_words_slack_message do
-  UI.message("morning_slack_message")
+  post_dutch_words_to_slack(greeting_type: "good-morning")
 end
 
 desc "Afternoon dutch_words slack message"
 lane :afternoon_dutch_words_slack_message do
-  UI.message("afternoon_slack_message")
+  post_dutch_words_to_slack(greeting_type: "good-afternoon")
 end
+
+private_lane :post_dutch_words_to_slack do |options|
+  input_options = get_input_options
+  input_options[:greeting_type] = options[:greeting_type]
+  input_options[:title] = get_random_greeting_message(input_options)
+  input_options[:message] = get_random_dutch_words_message(input_options)
+  input_options[:footer] = get_random_footer_message
+
+  post_message_to_slack(input_options)
+end
+
+private_lane :get_input_options do
+  options = {}
+  options[:random_words_count] = ENV["RANDOM_WORDS_COUNT"].to_i
+  options[:csv_file_name] = ENV["CSV_FILE_NAME"]
+  options
+end
+
+private_lane :post_message_to_slack do |options|
+  title = options[:title]
+  practice_message = "laten we meer oefenen met onderstaande woorden"
+  pretext_message = [title, practice_message].join("\n")
+
+  post_to_slack(
+    pretext: pretext_message,
+    message: options[:message],
+    channel: ENV["SLACK_CHANNEL_NAME"],
+    default_payloads: [],
+    attachment_properties: {
+      footer: options[:footer]
+    }
+  )
+end
+
+import("Fastfile+Helper.rb")
