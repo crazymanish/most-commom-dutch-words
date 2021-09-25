@@ -1,0 +1,20 @@
+name: Good morning flash card
+on:
+  schedule:
+    - cron: '30 8 * * 1-5' #07:30AM UTC (10:30AM AMS time), Monday to Friday
+jobs:
+  morningFlashcard:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+    - name: Run Fastlane for Good morning flash card
+      env:
+        SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+        SLACK_CHANNEL_NAME: ${{ secrets.SLACK_CHANNEL_NAME }}
+      run: bundle exec fastlane morning_dutch_words_slack_message
