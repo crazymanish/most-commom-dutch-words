@@ -1,0 +1,9 @@
+desc "Morning dutch_words slack message"
+lane :morning_dutch_words_slack_message do
+  UI.message("morning_slack_message")
+end
+
+desc "Afternoon dutch_words slack message"
+lane :afternoon_dutch_words_slack_message do
+  UI.message("afternoon_slack_message")
+end
