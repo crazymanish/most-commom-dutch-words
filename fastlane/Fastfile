@@ -17,20 +17,13 @@ lane :afternoon_dutch_words_slack_message do
 end
 
 private_lane :post_dutch_words_to_slack do |options|
-  input_options = get_input_options
-  input_options[:greeting_type] = options[:greeting_type]
-  input_options[:title] = get_random_greeting_message(input_options)
-  input_options[:message] = get_random_dutch_words_message(input_options)
-  input_options[:footer] = get_random_footer_message
-
-  post_message_to_slack(input_options)
-end
-
-private_lane :get_input_options do
-  options = {}
   options[:random_words_count] = ENV["RANDOM_WORDS_COUNT"].to_i
   options[:csv_file_name] = ENV["CSV_FILE_NAME"]
-  options
+  options[:title] = get_random_greeting_message(options)
+  options[:message] = get_random_dutch_words_message(options)
+  options[:footer] = get_random_footer_message
+
+  post_message_to_slack(options)
 end
 
 private_lane :post_message_to_slack do |options|

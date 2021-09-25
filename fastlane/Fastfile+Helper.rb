@@ -40,7 +40,7 @@ private_lane :get_random_greeting_message do |options|
   messages = all_greeting_messages
   greeting_message = messages[greeting_type].sample
   suffix = messages["suffix"].sample
-  emoji_list = ["🤗", "😈", "😇", "😊", "😍", "🙂", "☺️", "😺", "😸", "😻", "🐱", "🙌🏻", "🤟🏻", "🦋", "🦄", "☕️", "🍵", "🍸", "🍹"]
+  emoji_list = ["🤗", "😈", "😇", "😊", "😍", "🙂", "☺️", "😺", "😸", "😻", "🐱", "🙌🏻", "🤟🏻", "🦋", "🦄", "🍸", "🍹"]
 
   greeting_message.concat(" #{suffix}")
   greeting_message.concat(" #{emoji_list.sample}")
