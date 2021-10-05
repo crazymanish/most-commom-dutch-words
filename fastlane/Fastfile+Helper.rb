@@ -2,11 +2,10 @@ private_lane :get_random_dutch_words_message do |options|
   random_dutch_words = get_random_dutch_words(options)
 
   dutch_words_messages = []
-  dutch_words_messages.append(format_dutch_word_message(number: "een", word_info: random_dutch_words[0]))
-  dutch_words_messages.append(format_dutch_word_message(number: "twee", word_info: random_dutch_words[1]))
-  dutch_words_messages.append(format_dutch_word_message(number: "drie", word_info: random_dutch_words[2]))
-  dutch_words_messages.append(format_dutch_word_message(number: "vier", word_info: random_dutch_words[3]))
-  dutch_words_messages.append(format_dutch_word_message(number: "vijf", word_info: random_dutch_words[4]))
+  for index in 1..options[:random_words_count] do
+    dutch_words_messages.append(format_dutch_word_message(word_info: random_dutch_words[(index-1)]))
+  end
+
   dutch_words_messages.join("\n")
 end
 
@@ -27,12 +26,12 @@ private_lane :get_dutch_words_csv_file_path do |options|
 end
 
 private_lane :format_dutch_word_message do |options|
-  number = options[:number]
   word_info = options[:word_info]
   dutch_word = word_info["DUTCH"]
   dutch_word_url = "https://forvo.com/search/#{dutch_word}"
+  english_word_info = options[:show_english_info] ? ": (#{word_info["ENGLISH"]})" : ""
 
-  "• <#{dutch_word_url}|#{dutch_word}>: (#{word_info["ENGLISH"]})"
+  "• <#{dutch_word_url}|#{dutch_word}>#{english_word_info}"
 end
 
 private_lane :get_random_greeting_message do |options|
