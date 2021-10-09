@@ -1,5 +1,5 @@
 before_all do
-  ENV["RANDOM_WORDS_COUNT"] ||= "7"
+  ENV["RANDOM_WORDS_COUNT"] ||= "9"
   ENV["CSV_FILE_NAME"] ||= "commonly-spoken-Dutch-words.csv"
   ENV["SLACK_CHANNEL_NAME"] ||= "testing-manish"
   ENV["FL_SLACK_USERNAME"] ||= "Flashcard Bot"
