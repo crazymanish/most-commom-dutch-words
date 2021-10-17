@@ -11,13 +11,17 @@ lane :morning_dutch_words_slack_message do
   post_dutch_words_to_slack(greeting_type: "good-morning")
 end
 
+desc "Lunch time dutch_words slack message"
+lane :lunch_time_dutch_words_slack_message do
+  post_dutch_words_to_slack(greeting_type: "lunch-time")
+end
+
 desc "Afternoon dutch_words slack message"
 lane :afternoon_dutch_words_slack_message do
   post_dutch_words_to_slack(greeting_type: "good-afternoon")
 end
 
 private_lane :post_dutch_words_to_slack do |options|
-  options[:show_english_info] = rand(1..1000).even?
   options[:random_words_count] = ENV["RANDOM_WORDS_COUNT"].to_i
   options[:csv_file_name] = ENV["CSV_FILE_NAME"]
   options[:title] = get_random_greeting_message(options)

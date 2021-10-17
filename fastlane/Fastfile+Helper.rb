@@ -29,9 +29,8 @@ private_lane :format_dutch_word_message do |options|
   word_info = options[:word_info]
   dutch_word = word_info["DUTCH"]
   dutch_word_url = "https://www.contextualdictionary.com/translate/dutch-english/#{dutch_word}"
-  english_word_info = "" #options[:show_english_info] ? ": (#{word_info["ENGLISH"]})" : ""
 
-  "• <#{dutch_word_url}|#{dutch_word}>#{english_word_info}"
+  "• <#{dutch_word_url}|#{dutch_word}>"
 end
 
 private_lane :get_random_greeting_message do |options|
