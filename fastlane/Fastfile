@@ -12,8 +12,13 @@ lane :morning_dutch_words_slack_message do
 end
 
 desc "Lunch time dutch_words slack message"
-lane :lunch_time_dutch_words_slack_message do
-  post_dutch_words_to_slack(greeting_type: "lunch-time")
+lane :lunch_time_dutch_words_slack_message do |options|
+  options[:greeting_type] = "lunch-time"
+  options[:title] = get_random_greeting_message(options)
+  options[:message] = get_random_dutch_verbs_message(options)
+  options[:footer] = get_random_footer_message
+
+  post_message_to_slack(options)
 end
 
 desc "Afternoon dutch_words slack message"

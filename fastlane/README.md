@@ -20,6 +20,11 @@ or alternatively using `brew install fastlane`
 fastlane morning_dutch_words_slack_message
 ```
 Morning dutch_words slack message
+### lunch_time_dutch_words_slack_message
+```
+fastlane lunch_time_dutch_words_slack_message
+```
+Lunch time dutch_words slack message
 ### afternoon_dutch_words_slack_message
 ```
 fastlane afternoon_dutch_words_slack_message

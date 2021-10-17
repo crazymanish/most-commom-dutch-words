@@ -9,6 +9,33 @@ private_lane :get_random_dutch_words_message do |options|
   dutch_words_messages.join("\n")
 end
 
+private_lane :get_random_dutch_verbs_message do |options|
+  dutch_words_messages = []
+
+  options[:random_words_count] = "4".to_i
+  options[:csv_file_name] = "commonly-spoken-Dutch-weak-verbs.csv"
+  random_dutch_weak_verbs = get_random_dutch_words(options)
+  for index in 1..options[:random_words_count] do
+    dutch_words_messages.append(format_dutch_word_message(word_info: random_dutch_weak_verbs[(index-1)]))
+  end
+
+  options[:random_words_count] = "4".to_i
+  options[:csv_file_name] = "commonly-spoken-Dutch-strong-verbs.csv"
+  random_dutch_strong_verbs = get_random_dutch_words(options)
+  for index in 1..options[:random_words_count] do
+    dutch_words_messages.append(format_dutch_word_message(word_info: random_dutch_strong_verbs[(index-1)]))
+  end
+
+  options[:random_words_count] = "1".to_i
+  options[:csv_file_name] = "commonly-spoken-Dutch-mixed-verbs.csv"
+  random_dutch_mixed_verbs = get_random_dutch_words(options)
+  for index in 1..options[:random_words_count] do
+    dutch_words_messages.append(format_dutch_word_message(word_info: random_dutch_mixed_verbs[(index-1)]))
+  end
+
+  dutch_words_messages.join("\n")
+end
+
 private_lane :get_random_dutch_words do |options|
   require 'csv'
 
