@@ -13,6 +13,7 @@ end
 
 desc "Lunch time dutch_words slack message"
 lane :lunch_time_dutch_words_slack_message do |options|
+  options[:is_verb_word] = true
   options[:greeting_type] = "lunch-time"
   options[:title] = get_random_greeting_message(options)
   options[:message] = get_random_dutch_verbs_message(options)
