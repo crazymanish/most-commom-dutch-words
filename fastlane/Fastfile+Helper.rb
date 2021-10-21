@@ -57,9 +57,9 @@ private_lane :format_dutch_word_message do |options|
   dutch_word = word_info["DUTCH"]
 
   if options[:is_verb_word] == true
-    dutch_word_url = "https://www.contextualdictionary.com/translate/dutch-english/#{dutch_word}"
-  else
     dutch_word_url = "https://cooljugator.com/nl/#{dutch_word}"
+  else
+    dutch_word_url = "https://www.contextualdictionary.com/translate/dutch-english/#{dutch_word}"
   end
 
   "• <#{dutch_word_url}|#{dutch_word}>"
