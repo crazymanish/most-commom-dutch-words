@@ -28,7 +28,6 @@ lane :afternoon_dutch_words_slack_message do
 end
 
 private_lane :post_dutch_words_to_slack do |options|
-  options[:is_verb_word] = false
   options[:random_words_count] = ENV["RANDOM_WORDS_COUNT"].to_i
   options[:csv_file_name] = ENV["CSV_FILE_NAME"]
   options[:title] = get_random_greeting_message(options)
