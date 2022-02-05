@@ -61,12 +61,16 @@ private_lane :format_dutch_word_message do |options|
   dutch_word = word_info["DUTCH"]
 
   if options[:is_verb_word]
-    dutch_word_url = "https://www.mijnwoordenboek.nl/werkwoord/#{dutch_word}"
+    mijnwoordenboek_url = "https://www.mijnwoordenboek.nl/werkwoord/#{dutch_word}"
+    cooljugator_url = "https://cooljugator.com/nl/#{dutch_word}"
+    bab_url = "https://nl.bab.la/werkwoorden/nederlands/#{dutch_word}"
+    "• <#{mijnwoordenboek_url}|#{dutch_word}> :: <#{cooljugator_url}|cooljugator> | <#{bab_url}|nl-bab>"
   else
-    dutch_word_url = "https://www.contextualdictionary.com/translate/dutch-english/#{dutch_word}"
+    mijnwoordenboek_url = "https://www.mijnwoordenboek.nl/vertaal/NL/EN/#{dutch_word}"
+    contextualdictionary_url = "https://www.contextualdictionary.com/translate/dutch-english/#{dutch_word}"
+    bab_url = "https://nl.bab.la/woordenboek/nederlands-engels/#{dutch_word}"
+    "• <#{mijnwoordenboek_url}|#{dutch_word}> :: <#{contextualdictionary_url}|contextualdictionary> | <#{bab_url}|nl-bab>"
   end
-
-  "• <#{dutch_word_url}|#{dutch_word}>"
 end
 
 private_lane :get_random_greeting_message do |options|
