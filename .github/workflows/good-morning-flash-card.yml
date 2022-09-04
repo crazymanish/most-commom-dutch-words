@@ -1,7 +1,7 @@
 name: Good morning flash card
 on:
   schedule:
-    - cron: '30 8 * * 1-5' #08:30AM UTC (09:30AM AMS time), Monday to Friday
+    - cron: '30 7 * * 1-5' #08:30AM UTC (09:30AM AMS time), Monday to Friday
 jobs:
   morningFlashcard:
     runs-on: ubuntu-latest
